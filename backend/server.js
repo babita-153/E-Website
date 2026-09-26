@@ -1,7 +1,7 @@
 import app from './src/app.js'
 import { config } from './src/config/config.js'
 import { connectToDb } from './src/config/db.js'
-
+import cors from 'cors'
 
 await connectToDb()
 
