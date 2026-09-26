@@ -7,6 +7,9 @@ import {
 } from "../utils/auth.util.js";
 import { decode } from "jsonwebtoken";
 
+
+
+//REGISTER
 const registerController = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
   if (password !== confirmPassword) {
@@ -43,6 +46,9 @@ const registerController = async (req, res) => {
   });
 };
 
+
+
+//LOGIN
 const loginController = async (req, res) => {
   const { email, password } = req.body;
   let user = await userModel.findOne({ email });
@@ -78,6 +84,8 @@ const loginController = async (req, res) => {
   });
 };
 
+
+//REFRESH
 const refreshController = async (req, res) => {
   const { refreshToken } = req.cookies;
   if (!refreshToken) {
@@ -125,6 +133,7 @@ const refreshController = async (req, res) => {
   }
 };
 
+//LOGOUT
 const logoutController = async (req, res) => {
   const { refreshToken } = req.cookies;
   if (!refreshToken) {
@@ -149,6 +158,8 @@ const logoutController = async (req, res) => {
   }
 };
 
+
+//GET ME
 const getMeController = async (req, res) => {
   const { userId } = req.user;
   const user = await userModel.findById(userId);
