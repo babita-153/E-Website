@@ -32,7 +32,9 @@ const registerController = async (req, res) => {
   let refreshToken = getRefreshToken({ userId: user._id });
 
   await userModel.findByIdAndUpdate(user._id, { refreshToken });
-  res.cookie("refreshToken", refreshToken, { httpOnly: true });
+  res.cookie("refreshToken", refreshToken, { httpOnly: true,
+  secure: true,
+  sameSite: "none", });
   res.status(201).json({
     message: "user registered successfully",
     data: {
@@ -70,7 +72,9 @@ const loginController = async (req, res) => {
     refreshToken: newRefreshToken,
   });
 
-  res.cookie("refreshToken", newRefreshToken, { httpOnly: true });
+  res.cookie("refreshToken", newRefreshToken, {  httpOnly: true,
+  secure: true,
+  sameSite: "none", });
   res.status(200).json({
     message: "user logged In successfully",
     data: {
@@ -112,7 +116,9 @@ const refreshController = async (req, res) => {
     await userModel.findByIdAndUpdate(user._id, {
       refreshToken: newRefreshToken,
     });
-    res.cookie("refreshToken", newRefreshToken, { httpOnly: true });
+    res.cookie("refreshToken", newRefreshToken, {  httpOnly: true,
+  secure: true,
+  sameSite: "none", });
 
     res.status(200).json({
       message: "token refresh successfully",
