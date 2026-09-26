@@ -21,7 +21,7 @@ export const authApi = () => {
     (response) => response,
     async (error) => {
       if (error.response && error.response.status === 401) {
-        const res = await axios.post("/api/auth/refresh");
+        const res = await api.post("/api/auth/refresh");
        
         setAccessToken(res.data.data.accessToken);
         error.config.headers.Authorization = `Bearer ${res.data.data.accessToken}`;
