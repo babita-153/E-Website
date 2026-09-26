@@ -1,0 +1,18 @@
+import ImageKit, { toFile } from '@imagekit/nodejs';
+import { config } from '../config/config.js';
+
+
+
+const client = new ImageKit({
+  privateKey:config.IK_PRIVATE_KEY // This is the default and can be omitted
+});
+
+
+
+export const uploadFile=async({buffer,fileName})=>{
+    const res=await client.files.upload({
+  file: await toFile(buffer),
+  fileName: fileName,
+});
+return res
+}
