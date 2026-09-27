@@ -7,7 +7,7 @@ export const productsApi = () => {
 
   
   const api = axios.create({
-    baseURL: "https://e-commerce-1-q1c5.onrender.com/api",
+    baseURL: "/api",
     withCredentials: true,
   });
 

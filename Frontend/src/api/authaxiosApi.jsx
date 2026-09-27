@@ -6,7 +6,7 @@ export const authApi = () => {
   const { accessToken, setAccessToken } = useContext(AuthContext);
  
   const api = axios.create({
-    baseURL:"https://e-commerce-1-q1c5.onrender.com/api",
+    baseURL:"/api",
     withCredentials: true,
   });
 
@@ -21,7 +21,7 @@ export const authApi = () => {
     (response) => response,
     async (error) => {
       if (error.response && error.response.status === 401) {
-        const res = await api.post("/auth/refresh");
+        const res = await axios.post("/api/auth/refresh");
        
         setAccessToken(res.data.data.accessToken);
         error.config.headers.Authorization = `Bearer ${res.data.data.accessToken}`;
